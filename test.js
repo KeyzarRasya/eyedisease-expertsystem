@@ -13,12 +13,12 @@ const data = [
     ['M01', -0.2],
     ['M02', 0],
     ['M03', 0.5],
-    ['N01', 0],
+    ['N01', 1],
     ['N02', 1],
     ['N03', 1],
-    ['R01', 0],
-    ['R02', 0],
-    ['R03', 0]
+    ['R01', 1],
+    ['R02', 1],
+    ['R03', 1]
 ]
 
 function findCfHE(dataUser, cfExpert) {
@@ -82,11 +82,12 @@ function findHighest(data) {
 function conclusion(data, index, expert){
     let percent = data * 100
     const penyakit = expert[index].nama
-    console.log(`Penyakit : ${penyakit} Probabilitas : ${percent}%`)
+    return {penyakit, percent:percent}
 }
 
-console.log(cfExpert.length)
-let cfhe = findCfHE(data, cfExpert);
-const dataCombine = calculatePosibility(cfhe);
-let {highest, index} = findHighest(dataCombine)
-conclusion(highest, index, cfExpert)
+module.exports = {
+    findCfHE,
+    calculatePosibility,
+    findHighest,
+    conclusion
+}
